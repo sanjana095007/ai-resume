@@ -1,0 +1,8 @@
+dist
+node_modules
+css
+font
+images
+favicon
+*.html
+package-lock.json

@@ -1,0 +1,104 @@
+/**
+ * Performance Optimizations
+ * - CSS containment for improved rendering
+ * - Content-visibility for lazy rendering
+ * - Will-change for optimized animations
+ */
+
+/* CSS Containment for major sections */
+.resume-section {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+.hero-section {
+  contain: layout style;
+  content-visibility: visible;
+}
+
+/* Optimize timeline items */
+.timeline-item {
+  contain: layout style paint;
+}
+
+/* Optimize project cards */
+.projects-section__card {
+  contain: layout style paint;
+}
+
+/* Optimize partner cards */
+.about-section__partner-card {
+  contain: layout paint;
+}
+
+/* Optimize skill bars */
+.skill-bar {
+  contain: layout style;
+}
+
+/* Image optimization */
+picture {
+  display: contents;
+}
+
+img {
+  content-visibility: auto;
+}
+
+img.loading {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* Optimize carousel animations */
+.carousel-container {
+  contain: layout style;
+}
+
+/* Navigation optimization */
+.section-nav {
+  contain: layout style;
+}
+
+/* Reduce layout shifts */
+.hero-section__media {
+  min-width: 160px;
+  min-height: 160px;
+}
+
+.hero-section__avatar {
+  aspect-ratio: 1;
+}
+
+.about-section__partner-logo {
+  aspect-ratio: 1;
+}
+
+/* Optimize modal */
+.modal-overlay {
+  contain: layout style paint;
+}
+
+/* Optimize form */
+.contact-form {
+  contain: layout style;
+}
+
+/* Optimize animations */
+.animated-section {
+  will-change: opacity, transform;
+}
+
+.animated-section.visible {
+  will-change: auto;
+}
+
+/* Optimize skeleton loaders */
+.skeleton {
+  contain: layout style paint;
+}

@@ -1,0 +1,339 @@
+/* ============================================
+   Accessibility Enhancements
+   ============================================ */
+
+/* Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus Outlines - WCAG 2.1 AA Compliant */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* High contrast focus rings for better visibility */
+:root {
+  --color-focus-ring: #2563eb;
+  --color-focus-ring-error: #ef4444;
+  --color-focus-ring-success: #10b981;
+}
+
+[data-theme='dark'] {
+  --color-focus-ring: #3b82f6;
+  --color-focus-ring-error: #f87171;
+  --color-focus-ring-success: #34d399;
+}
+
+/* Enhanced focus for buttons and interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role='button']:focus-visible,
+[role='link']:focus-visible,
+[tabindex]:not([tabindex='-1']):focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Focus for form elements with errors */
+input:focus-visible:invalid,
+textarea:focus-visible:invalid,
+select:focus-visible:invalid {
+  outline-color: var(--color-focus-ring-error);
+}
+
+/* Skip Navigation Link */
+.skip-nav {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-accent-primary);
+  color: var(--color-text-inverted);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xl);
+  transition: top var(--transition-fast);
+  text-decoration: none;
+}
+
+.skip-nav:focus {
+  top: var(--space-4);
+  outline: 3px solid var(--color-text-inverted);
+  outline-offset: 2px;
+}
+
+/* Ensure keyboard focus is visible on cards and interactive elements */
+.card:focus-visible,
+.project-carousel__card:focus-visible,
+.timeline-item:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-xl);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline-width: 4px;
+    outline-offset: 3px;
+  }
+
+  .skip-nav:focus {
+    outline-width: 4px;
+  }
+}
+
+/* Reduced Motion Support - Already exists in global.css but ensuring consistency */
+@media (prefers-reduced-motion: reduce) {
+  .skip-nav {
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Improved Focus for Navigation Items */
+.section-nav__link:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Focus for Modal Close Button */
+.project-modal__close:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  transform: scale(1.1);
+}
+
+/* Focus for Carousel Controls */
+.project-carousel__nav:focus-visible,
+.project-carousel__indicator:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  transform: scale(1.1);
+}
+
+/* Accessible Icon Sizing - Minimum 44x44px touch target */
+.icon-btn,
+.project-carousel__nav,
+.project-modal__close,
+.theme-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Ensure carousel indicators meet size requirements */
+.project-carousel__indicator {
+  min-width: 44px;
+  min-height: 12px;
+  padding: var(--space-2);
+}
+
+/* Live Region for Dynamic Content Announcements */
+.live-region {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Focus Trap Container - for modals and overlays */
+.focus-trap-container {
+  isolation: isolate;
+}
+
+/* Ensure sufficient color contrast for text */
+.text-muted,
+.text-tertiary {
+  color: var(--color-text-tertiary);
+}
+
+/* Dark mode text adjustments for better contrast */
+[data-theme='dark'] .text-muted,
+[data-theme='dark'] .text-tertiary {
+  color: var(--color-text-tertiary);
+}
+
+/* Status messages with appropriate ARIA roles */
+.status-message {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.status-message--success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-accent-success);
+  border: 1px solid var(--color-accent-success);
+}
+
+.status-message--error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-accent-error);
+  border: 1px solid var(--color-accent-error);
+}
+
+.status-message--warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--color-accent-warning);
+  border: 1px solid var(--color-accent-warning);
+}
+
+.status-message--info {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--color-accent-primary);
+  border: 1px solid var(--color-accent-primary);
+}
+
+/* Ensure hover states don't rely solely on color */
+.btn:hover::after,
+.link:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: currentColor;
+  opacity: 0.3;
+}
+
+.btn {
+  position: relative;
+}
+
+.btn:hover::after {
+  display: none;
+}
+
+/* Improve link underlines for better accessibility */
+.link {
+  position: relative;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Keyboard navigation indicator for carousel */
+.project-carousel:focus-within .project-carousel__nav,
+.project-carousel:focus-within .project-carousel__indicator {
+  opacity: 1;
+}
+
+/* Improve visual hierarchy for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  scroll-margin-top: var(--space-20);
+}
+
+/* Ensure adequate spacing for readability */
+p + p {
+  margin-top: var(--space-4);
+}
+
+/* Form field focus improvements */
+.contact-form__input:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-color: var(--color-focus-ring);
+}
+
+.contact-form__input--error:focus-visible {
+  outline-color: var(--color-focus-ring-error);
+  border-color: var(--color-focus-ring-error);
+}
+
+/* Loading states - ensure they're announced to screen readers */
+[aria-busy='true'] {
+  cursor: wait;
+}
+
+/* Disabled state improvements */
+[disabled],
+[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Ensure interactive elements are clearly identified */
+[role='button']:not(button),
+[role='link']:not(a) {
+  cursor: pointer;
+}
+
+/* Modal overlay accessibility */
+.project-modal-overlay {
+  background-color: var(--color-bg-overlay);
+  backdrop-filter: blur(4px);
+}
+
+[data-theme='dark'] .project-modal-overlay {
+  background-color: rgba(15, 23, 42, 0.95);
+}
+
+/* Ensure tooltips and popovers are keyboard accessible */
+[role='tooltip'],
+[role='dialog'],
+[role='alertdialog'] {
+  outline: none;
+}
+
+/* Theme toggle accessibility */
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Ensure carousel is keyboard navigable */
+.project-carousel__content:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: -3px;
+}

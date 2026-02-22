@@ -1,0 +1,43 @@
+{
+  "name": "V Chaitanya Chowdari - Resume",
+  "short_name": "VC Resume",
+  "description": "Professional resume and portfolio of V Chaitanya Chowdari - AI Generalist, Automation Expert & Full Stack Developer",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#2563eb",
+  "theme_color_dark": "#1e40af",
+  "background_color": "#ffffff",
+  "background_color_dark": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "categories": ["portfolio", "resume", "business"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
